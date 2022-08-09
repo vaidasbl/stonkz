@@ -4,7 +4,7 @@ import HighchartsReact from "highcharts-react-official";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-const CandleGraph = ({ data, parameters }) => {
+const CandleGraph = ({ data, symbol }) => {
   let ohlc = [],
     volume = [],
     groupingUnits = [
@@ -71,7 +71,7 @@ const CandleGraph = ({ data, parameters }) => {
     series: [
       {
         type: "candlestick",
-        name: parameters.symbol,
+        name: symbol,
         data: ohlc,
         dataGrouping: {
           units: groupingUnits,

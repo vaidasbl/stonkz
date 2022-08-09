@@ -39,6 +39,7 @@ const SearchInput = ({ graphDateFrom, graphDateTill }) => {
           symbol: result.data.ticker,
           dateFrom: graphDateFrom,
           dateTill: graphDateTill,
+          resolution: "30",
         })
       );
       console.log(result.data);

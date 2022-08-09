@@ -12,7 +12,7 @@
 
 .myBtn1 {
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid rgb(189, 189, 189);
   border-radius: 5px;
   color: black;
   width: 100px;
@@ -20,7 +20,7 @@
 }
 
 .myBtn1:hover {
-  background-color: rgb(231, 231, 231);
+  border: 1px solid black;
 }
 
 .searchfield {
@@ -50,7 +50,7 @@
 }
 
 .hrhr1 {
-  margin-top: 0px;
+  margin-top: 1px;
   background-image: linear-gradient(to right, white, rgb(0, 0, 0), white);
 }
 
@@ -93,7 +93,6 @@
 
 .parameters {
   height: 150px;
-  border: 1px solid red;
 }
 
 .myInput {

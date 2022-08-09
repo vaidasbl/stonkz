@@ -33,8 +33,6 @@ const MainContainer = () => {
               date={graphDateTill}
             />
           </div>
-          <div>{Date.now()}</div>
-          <div>{new Date(graphData.dateTill).toLocaleDateString("en-US")}</div>
         </div>
 
         <CompanyCard />

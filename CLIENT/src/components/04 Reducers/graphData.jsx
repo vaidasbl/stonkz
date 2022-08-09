@@ -5,6 +5,7 @@ const initialState = {
     symbol: "",
     dateFrom: null,
     dateTill: null,
+    resolution: "30",
   },
 };
 
@@ -18,6 +19,7 @@ export const graphDataSlice = createSlice({
         symbol: req.payload.symbol,
         dateFrom: req.payload.dateFrom,
         dateTill: req.payload.dateTill,
+        resolution: req.payload.resolution,
       };
     },
   },
