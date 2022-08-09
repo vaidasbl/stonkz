@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import historyDataReducer from "./historyData";
+import graphDataReducer from "./graphData";
+import companyDataReducer from "./companyData";
 
 const store = configureStore({
-  reducer: { historyData: historyDataReducer },
+  reducer: { graphData: graphDataReducer, companyData: companyDataReducer },
 });
 
 export default store;

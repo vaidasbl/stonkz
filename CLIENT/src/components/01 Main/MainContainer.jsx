@@ -1,44 +1,43 @@
 import React, { useState } from "react";
-import CompanyCard from "../02 Common Components/CompanyCard";
+import { useSelector } from "react-redux";
+import CompanyCard from "./CompanyCard";
 import Dashboard from "../02 Common Components/Dashboard";
-import DateInput from "../02 Common Components/DateInput";
-import SearchInput from "../02 Common Components/SearchInput";
+import DateInput from "./DateInput";
+import SearchInput from "./SearchInput";
 
 const MainContainer = () => {
-  const [historyDateFrom, setHistoryDateFrom] = useState(null);
-  const [historyDateTill, setHistoryDateTill] = useState(null);
-  const [company, setCompany] = useState({});
+  const graphData = useSelector((state) => state.graphData.value);
+  const [graphDateFrom, setGraphDateFrom] = useState(null);
+  const [graphDateTill, setGraphDateTill] = useState(null);
 
   return (
     <Dashboard title={"Home"}>
       <div className="container ">
         <SearchInput
-          setCompany={setCompany}
-          company={company}
-          historyDateFrom={historyDateFrom}
-          historyDateTill={historyDateTill}
+          graphDateFrom={graphDateFrom?.toLocaleDateString("en-US")}
+          graphDateTill={graphDateTill?.toLocaleDateString("en-US")}
         />
 
         <div className="row mt-4">
           <div className="col-6">
             <DateInput
               label="History from"
-              payload="historyFrom"
-              setHistoryDate={setHistoryDateFrom}
-              historyDate={historyDateFrom}
+              setDate={setGraphDateFrom}
+              date={graphDateFrom}
             />
           </div>
           <div className="col-6">
             <DateInput
               label="History till"
-              payload="historyTill"
-              setHistoryDate={setHistoryDateTill}
-              historyDate={historyDateTill}
+              setDate={setGraphDateTill}
+              date={graphDateTill}
             />
           </div>
+          <div>{Date.now()}</div>
+          <div>{new Date(graphData.dateTill).toLocaleDateString("en-US")}</div>
         </div>
 
-        <CompanyCard data={company} />
+        <CompanyCard />
       </div>
     </Dashboard>
   );

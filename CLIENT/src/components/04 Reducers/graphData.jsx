@@ -8,12 +8,12 @@ const initialState = {
   },
 };
 
-export const historyDataSlice = createSlice({
-  name: "historyData",
+export const graphDataSlice = createSlice({
+  name: "graphData",
   initialState,
 
   reducers: {
-    setHistoryData(state, req) {
+    setGraphData(state, req) {
       state.value = {
         symbol: req.payload.symbol,
         dateFrom: req.payload.dateFrom,
@@ -23,5 +23,5 @@ export const historyDataSlice = createSlice({
   },
 });
 
-export const { setHistoryData } = historyDataSlice.actions;
-export default historyDataSlice.reducer;
+export const { setGraphData } = graphDataSlice.actions;
+export default graphDataSlice.reducer;

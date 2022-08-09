@@ -1,8 +1,8 @@
 .main-container {
   border: 1px solid rgba(5, 0, 53, 0.123);
   border-radius: 5px;
-  width: 600px;
-  height: 600px;
+  width: 700px;
+  height: 700px;
   background-color: #ffffff;
   justify-content: center;
   text-align: center;
@@ -89,4 +89,17 @@
 
 .main-container-body {
   height: 420px;
+}
+
+.parameters {
+  height: 150px;
+  border: 1px solid red;
+}
+
+.myInput {
+  width: 150px;
+  text-align: center;
+  border: solid 1px black;
+  height: 40px;
+  outline: none;
 }

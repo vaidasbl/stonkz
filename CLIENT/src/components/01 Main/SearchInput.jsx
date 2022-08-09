@@ -1,17 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setHistoryData } from "../04 Reducers/historyData";
+import { useDispatch } from "react-redux";
+import { setCompanyData } from "../04 Reducers/companyData";
+import { setGraphData } from "../04 Reducers/graphData";
 
-const SearchInput = ({
-  company,
-  setCompany,
-  historyDateFrom,
-  historyDateTill,
-}) => {
+const SearchInput = ({ graphDateFrom, graphDateTill }) => {
   const dispatch = useDispatch();
   const [searchString, setSearchString] = useState("");
-  const [validSearch, setValidSearch] = useState(true);
+  const [validInput, setValidInput] = useState(true);
 
   const validate = (e) => {
     const searchString = e.target.value;
@@ -19,26 +15,35 @@ const SearchInput = ({
     if (searchString === "" || regex.test(searchString)) {
       setSearchString(searchString);
     } else {
-      setValidSearch(false);
-      setTimeout(() => setValidSearch(true), 1000);
+      setValidInput(false);
+      setTimeout(() => setValidInput(true), 1000);
     }
   };
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(
+      const result = await axios.get(
         `http://localhost:3002/api/finnhub/company/${searchString}`
       );
-      setCompany(response.data);
       dispatch(
-        setHistoryData({
-          symbol: response.data.ticker,
-          dateFrom: historyDateFrom ? historyDateFrom : null,
-          dateTill: historyDateTill ? historyDateTill : null,
+        setCompanyData({
+          name: result.data.name,
+          country: result.data.country,
+          currency: result.data.currency,
+          weburl: result.data.weburl,
+          ticker: result.data.ticker,
         })
       );
+      dispatch(
+        setGraphData({
+          symbol: result.data.ticker,
+          dateFrom: graphDateFrom,
+          dateTill: graphDateTill,
+        })
+      );
+      console.log(result.data);
     } catch (err) {
-      setCompany({});
+      dispatch(setCompanyData({}));
       alert(err.message);
     }
   };
@@ -51,7 +56,7 @@ const SearchInput = ({
           className="searchfield"
           onChange={validate}
           value={searchString}
-          style={validSearch ? {} : { border: "1px solid red" }}
+          style={validInput ? {} : { border: "1px solid red" }}
         ></input>
       </div>
       <div className="col-6 align-left">

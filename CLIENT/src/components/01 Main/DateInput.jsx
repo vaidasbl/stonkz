@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-export default function DateInput({ label, setHistoryDate, historyDate }) {
+export default function DateInput({ label, setDate, date }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
         label={label}
-        value={historyDate}
+        value={date}
         onChange={(newValue) => {
-          setHistoryDate(newValue.toLocaleDateString("en-US"));
+          setDate(newValue);
         }}
         renderInput={(params) => <TextField {...params} />}
       />
