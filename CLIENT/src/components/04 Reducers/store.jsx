@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import historyDateReducer from "./historyDate";
+import historyDataReducer from "./historyData";
 
 const store = configureStore({
-  reducer: { historyDate: historyDateReducer },
+  reducer: { historyData: historyDataReducer },
 });
 
 export default store;

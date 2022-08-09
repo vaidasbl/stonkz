@@ -25,4 +25,20 @@ router.get("/company/:symbol", (req, res) => {
   }
 });
 
+router.post("/company/history", (req, res) => {
+  try {
+    finnhubClient.stockCandles(
+      req.body.symbol,
+      req.body.resolution,
+      req.body.dateFrom,
+      req.body.dateTill,
+      (error, data, response) => {
+        res.send(data);
+      }
+    );
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
 module.exports = router;

@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MainContainer from "./components/01 Home/MainContainer";
+import MainContainer from "./components/01 Main/MainContainer";
 import HistoryContainer from "./components/03 History Component/HistoryContainer";
 
 import "./styles/App.css";
