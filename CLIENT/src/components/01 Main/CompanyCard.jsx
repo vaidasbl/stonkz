@@ -1,21 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import DialogForDateInput from "../02 Common Components/DialogForDateInput";
 
 const CompanyCard = () => {
   const companyData = useSelector((state) => state.companyData.value);
-  const navigate = useNavigate();
 
   if (!Object.values(companyData).some((k) => k === "" || k === undefined)) {
     return (
       <div className="company-card mt-4">
         <div className="row mt-2 ">
           <div className="col-4 c1">Company name: </div>
-          <div
-            onClick={() => navigate(`/history/${companyData.ticker}`)}
-            className="col-6 c2 cname"
-          >
-            {companyData.name}
+          <div className="col-6 c2 cname">
+            <DialogForDateInput />
           </div>
         </div>
         <hr className="hrhr1" />
@@ -31,6 +28,7 @@ const CompanyCard = () => {
           <div className="col-4 c1">Web URL: </div>
           <div className="col-6 c2">{companyData.weburl}</div>
         </div>
+        <img src={companyData.img} alt="" />
       </div>
     );
   }

@@ -4,28 +4,17 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { useDispatch, useSelector } from "react-redux";
-import { setGraphData } from "../04 Reducers/graphData";
 
-export default function ResolutionSelect() {
-  const dispatch = useDispatch();
-  const graphData = useSelector((state) => state.graphData.value);
-
+export default function ResolutionSelect({ value, setResolution }) {
   const handleChange = (e) => {
-    dispatch(setGraphData({ ...graphData, resolution: e.target.value }));
+    setResolution(e.target.value);
   };
 
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Box sx={{ minWidth: 100 }}>
       <FormControl fullWidth>
         <InputLabel>Resolution</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={graphData.resolution}
-          label="Resolution"
-          onChange={handleChange}
-        >
+        <Select value={value} label="Resolution" onChange={handleChange}>
           <MenuItem value={"1"}>1</MenuItem>
           <MenuItem value={"5"}>5</MenuItem>
           <MenuItem value={"15"}>15</MenuItem>

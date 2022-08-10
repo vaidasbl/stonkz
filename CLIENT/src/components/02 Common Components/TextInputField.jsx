@@ -1,20 +1,18 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { useDispatch, useSelector } from "react-redux";
-import { setGraphData } from "../04 Reducers/graphData";
+import { validate } from "../05 Functions/ValidatorLettersAndSpace";
 
-export default function TextInputField({ label, value }) {
-  const dispatch = useDispatch();
-  const graphData = useSelector((state) => state.graphData.value);
-
+export default function TextInputField({ label, value, setData }) {
+  const [valid, setValid] = useState(true);
   const handleChange = (e) => {
-    dispatch(setGraphData({ ...graphData, symbol: e.target.value }));
+    validate(e, setData, setValid);
   };
   return (
     <Box component="form">
       <TextField
-        label={label}
+        error={!valid}
+        label={valid ? label : "Only letters!"}
         variant="outlined"
         value={value}
         onChange={handleChange}

@@ -7,6 +7,7 @@ const initialState = {
     currency: "",
     weburl: "",
     ticker: "",
+    img: "",
   },
 };
 
@@ -22,6 +23,7 @@ export const companyDataSlice = createSlice({
         currency: req.payload.currency,
         weburl: req.payload.weburl,
         ticker: req.payload.ticker,
+        img: req.payload.img,
       };
     },
   },

@@ -1,29 +1,19 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import TextInputField from "../02 Common Components/TextInputField";
 import { setCompanyData } from "../04 Reducers/companyData";
 import { setGraphData } from "../04 Reducers/graphData";
+import { validate } from "../05 Functions/ValidatorLettersAndSpace";
 
 const SearchInput = ({ graphDateFrom, graphDateTill }) => {
   const dispatch = useDispatch();
-  const [searchString, setSearchString] = useState("");
-  const [validInput, setValidInput] = useState(true);
-
-  const validate = (e) => {
-    const searchString = e.target.value;
-    const regex = /^[a-zA-Zą-ž\s\d-]+$/;
-    if (searchString === "" || regex.test(searchString)) {
-      setSearchString(searchString);
-    } else {
-      setValidInput(false);
-      setTimeout(() => setValidInput(true), 1000);
-    }
-  };
+  const [inputString, setInputString] = useState("");
 
   const handleSearch = async () => {
     try {
       const result = await axios.get(
-        `http://localhost:3002/api/finnhub/company/${searchString}`
+        `http://localhost:3002/api/finnhub/company/${inputString}`
       );
       dispatch(
         setCompanyData({
@@ -52,13 +42,11 @@ const SearchInput = ({ graphDateFrom, graphDateTill }) => {
   return (
     <div className="row mt-4 ">
       <div className="col-6 align-right ">
-        <input
-          type="text"
-          className="searchfield"
-          onChange={validate}
-          value={searchString}
-          style={validInput ? {} : { border: "1px solid red" }}
-        ></input>
+        <TextInputField
+          label="Company name"
+          value={inputString}
+          setData={setInputString}
+        />
       </div>
       <div className="col-6 align-left">
         {" "}
@@ -71,3 +59,7 @@ const SearchInput = ({ graphDateFrom, graphDateTill }) => {
 };
 
 export default SearchInput;
+
+{
+  /* <*/
+}

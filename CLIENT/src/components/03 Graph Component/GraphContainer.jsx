@@ -2,16 +2,15 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import DateInput from "../01 Main/DateInput";
 import Dashboard from "../02 Common Components/Dashboard";
-import ResolutionSelect from "../02 Common Components/ResolutionSelect";
-import TextInputField from "../02 Common Components/TextInputField";
+import Swal from "sweetalert2";
+
 import CandleGraph from "./CandleGraph";
 import GraphParameters from "./GraphParameters";
 
 const HistoryContainer = () => {
   const graphData = useSelector((state) => state.graphData.value);
-  const [stockData, setData] = useState([]);
+  const [stockData, setStockData] = useState([]);
 
   const graphParams = {
     symbol: graphData.symbol,
@@ -26,9 +25,23 @@ const HistoryContainer = () => {
         `http://localhost:3002/api/finnhub/company/history`,
         graphParams
       );
-      setData(result.data);
+      setStockData(result.data);
+      if (result.data.s === "no_data") {
+        Swal.fire({
+          position: "center",
+          icon: "warning",
+          title: `No data found for company '${graphParams.symbol}'`,
+          showConfirmButton: false,
+        });
+      }
     } catch (err) {
-      alert(err);
+      console.log(err);
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: err.response.data || err,
+        showConfirmButton: false,
+      });
     }
   };
 
@@ -37,7 +50,13 @@ const HistoryContainer = () => {
   }, []);
 
   return (
-    <Dashboard title={`Stock graph of ${graphData.symbol}`}>
+    <Dashboard
+      title={
+        graphData.symbol
+          ? `Stock data of '${graphData.symbol}'`
+          : "Enter the company name"
+      }
+    >
       <CandleGraph data={stockData} symbol={graphData.symbol} />
       <GraphParameters getData={getData} />
     </Dashboard>

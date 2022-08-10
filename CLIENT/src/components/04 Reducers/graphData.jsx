@@ -5,7 +5,7 @@ const initialState = {
     symbol: "",
     dateFrom: null,
     dateTill: null,
-    resolution: "30",
+    resolution: "D",
   },
 };
 
