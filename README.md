@@ -2,9 +2,8 @@
 
 To do:
 
-- [ ] Navigation
+- [x] Navigation
 - [ ] Action log + pagination
-- [ ] Redirect when directly accessing stocks view
 - [ ] Company card redesign + company web url with link
 - [ ] Text input validator regex update + maxLength(35)
 - [ ] .gitignore update
