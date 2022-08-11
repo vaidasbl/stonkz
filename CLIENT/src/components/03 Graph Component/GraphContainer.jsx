@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import CandleGraph from "./CandleGraph";
 import GraphParameters from "./GraphParameters";
 
-const HistoryContainer = () => {
+const GraphContainer = () => {
   const graphData = useSelector((state) => state.graphData.value);
   const [stockData, setStockData] = useState([]);
 
@@ -45,10 +45,6 @@ const HistoryContainer = () => {
     }
   };
 
-  useEffect(() => {
-    getData();
-  }, []);
-
   return (
     <Dashboard
       title={
@@ -63,4 +59,4 @@ const HistoryContainer = () => {
   );
 };
 
-export default HistoryContainer;
+export default GraphContainer;

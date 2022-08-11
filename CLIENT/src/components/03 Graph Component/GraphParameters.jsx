@@ -50,7 +50,7 @@ const GraphParameters = ({ getData }) => {
             setData={setSymbol}
           />
         </div>
-        <div className="col-3 redborder">
+        <div className="col-3 ">
           <ResolutionSelect value={resolution} setResolution={setResolution} />
         </div>
         <div className="col-3">

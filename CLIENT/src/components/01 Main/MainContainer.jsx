@@ -12,8 +12,6 @@ const MainContainer = () => {
   const dispatch = useDispatch();
   const graphData = useSelector((state) => state.graphData.value);
   const [symbol, setSymbol] = useState(graphData.symbol);
-  const [dateFrom, setDateFrom] = useState(graphData.dateFrom);
-  const [dateTill, setDateTill] = useState(graphData.dateTill);
 
   const handleSearchCompany = async () => {
     try {
@@ -38,41 +36,22 @@ const MainContainer = () => {
 
   return (
     <Dashboard title="Home">
-      <div className="">
-        <div className="row ">
-          <div className="col-6 align-left">
-            <TextInputField
-              label="Company name"
-              value={symbol}
-              setData={setSymbol}
-            />
-          </div>
-          <div className="col-6">
-            <button onClick={handleSearchCompany} className="myBtn2">
-              Search
-            </button>
-          </div>
+      <div className="row ">
+        <div className="col-6 align-left">
+          <TextInputField
+            label="Company name"
+            value={symbol}
+            setData={setSymbol}
+          />
         </div>
-
-        <CompanyCard />
-
-        {/* <div className="row mt-4">
-          <div className="col-6">
-            <DateInput
-              label="History from"
-              value={dateFrom}
-              setDate={setDateFrom}
-            />
-          </div>
-          <div className="col-6">
-            <DateInput
-              label="History till"
-              value={dateTill}
-              setDate={setDateTill}
-            />
-          </div>
-        </div> */}
+        <div className="col-6">
+          <button onClick={handleSearchCompany} className="myBtn2">
+            Search
+          </button>
+        </div>
       </div>
+
+      <CompanyCard />
     </Dashboard>
   );
 };

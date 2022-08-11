@@ -94,12 +94,6 @@
   border: 1px solid red;
 }
 
-.main-container-title {
-  font-size: 18px;
-  margin-top: 20px;
-  height: 50px;
-}
-
 .main-container-body {
   height: 420px;
   margin: 20px 20px;
@@ -128,4 +122,33 @@ button:disabled {
 .warningmsg {
   font-size: 12px;
   color: rgb(97, 33, 33);
+}
+
+.navibar {
+  margin-bottom: 10px;
+  height: 30px;
+  width: 40%;
+}
+
+.navitem {
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.336);
+  text-align: center;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.navitem:hover {
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.navitem-active {
+  color: #222232;
+  background-color: white;
+  border: 1px solid rgba(255, 255, 255, 0.336);
+  text-align: center;
+  margin: 10px;
+  border-radius: 10px;
 }

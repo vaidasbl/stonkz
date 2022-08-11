@@ -20,7 +20,7 @@ export default function DialogForDateInput() {
   const [dateFrom, setDateFrom] = useState(graphData.dateFrom);
   const [dateTill, setDateTill] = useState(graphData.dateTill);
   const [open, setOpen] = useState(false);
-  const [nameText, setNameText] = useState(companyData.name);
+  const [hovered, setHovered] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -42,17 +42,17 @@ export default function DialogForDateInput() {
         resolution: "D",
       })
     );
-    navigate(`/history/${companyData.ticker}`);
+    navigate(`/stocks`);
   };
   return (
     <div>
       <div
-        onMouseOver={() => setNameText("See stocks")}
-        onMouseOut={() => setNameText(companyData.name)}
+        className="companytitle"
+        onMouseOver={() => setHovered(true)}
+        onMouseOut={() => setHovered(false)}
         onClick={handleClickOpen}
-        // onClick={() => navigate(`/history/${companyData.ticker}`)}
       >
-        {nameText}
+        {hovered ? "See stocks" : companyData.name}
       </div>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Select date range</DialogTitle>

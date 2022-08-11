@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const finnhub = require("finnhub");
 const { response } = require("express");
+const { Log } = require("../Log/log");
 
 const router = express.Router();
 
@@ -33,6 +34,17 @@ router.post("/company/history", (req, res) => {
       req.body.dateFrom,
       req.body.dateTill,
       (error, data, response) => {
+        const logEntry = new Log({
+          company: req.body.symbol,
+          stockData: data,
+          dateRange: `${new Date(req.body.dateFrom * 1000).toLocaleDateString(
+            "en-US"
+          )} - ${new Date(req.body.dateTill * 1000).toLocaleDateString(
+            "en-US"
+          )}`,
+          eventDate: dateNow(),
+        });
+        logEntry.save();
         res.send(data);
       }
     );
@@ -40,5 +52,23 @@ router.post("/company/history", (req, res) => {
     res.status(400).send(err);
   }
 });
+
+router.get("/log", async (req, res) => {
+  try {
+    const logs = Log.find();
+    res.send(logs);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+const dateNow = () => {
+  return new Date().toLocaleString("en-US", {
+    month: "short",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+};
 
 module.exports = router;
