@@ -7,6 +7,7 @@ To do:
 - Redirect when directly accessing stocks view
 - Company card redesign + company web url with link
 - Text input validator regex update
+- .gitignore update
 - Implement SCSS
 - Deploy
 - Documentation
