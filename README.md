@@ -9,6 +9,7 @@ To do:
 - Text input validator regex update
 - .gitignore update
 - Implement SCSS
+- Backend validation
 - Deploy
 - Documentation
 - Tests
