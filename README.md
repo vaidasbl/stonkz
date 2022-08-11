@@ -8,6 +8,7 @@ To do:
 - [ ] Company card redesign + company web url with link
 - [ ] Text input validator regex update
 - [ ] .gitignore update
+- [ ] Company symbol suggestion on type - https://finnhub.io/docs/api/stock-symbols
 - [ ] Implement SCSS
 - [ ] Backend validation
 - [ ] Deploy
