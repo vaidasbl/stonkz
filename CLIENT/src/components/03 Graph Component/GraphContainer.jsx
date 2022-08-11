@@ -50,7 +50,7 @@ const GraphContainer = () => {
       title={
         graphData.symbol
           ? `Stock data of '${graphData.symbol}'`
-          : "Enter the company name"
+          : "Enter the graph parameters"
       }
     >
       <CandleGraph data={stockData} symbol={graphData.symbol} />

@@ -34,8 +34,15 @@ const GraphParameters = ({ getData }) => {
       })
     );
   };
+  console.log(graphData);
   useEffect(() => {
-    getData();
+    if (
+      !empty &&
+      graphData.dateFrom !== "Invalid Date" &&
+      graphData.dateTill !== "Invalid Date"
+    ) {
+      getData();
+    }
   }, [graphData]);
 
   return (

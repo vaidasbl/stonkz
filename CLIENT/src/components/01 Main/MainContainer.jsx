@@ -45,7 +45,11 @@ const MainContainer = () => {
           />
         </div>
         <div className="col-6">
-          <button onClick={handleSearchCompany} className="myBtn2">
+          <button
+            type="button"
+            className="myBtn2"
+            onClick={handleSearchCompany}
+          >
             Search
           </button>
         </div>

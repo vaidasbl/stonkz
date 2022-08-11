@@ -9,13 +9,14 @@ export default function TextInputField({ label, value, setData }) {
     validate(e, setData, setValid);
   };
   return (
-    <Box component="form">
+    <Box component="">
       <TextField
         error={!valid}
         label={valid ? label : "Only letters!"}
         variant="outlined"
         value={value}
         onChange={handleChange}
+        inputProps={{ maxLength: 35, style: { textTransform: "uppercase" } }}
       />
     </Box>
   );

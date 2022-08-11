@@ -152,3 +152,35 @@ button:disabled {
   margin: 10px;
   border-radius: 10px;
 }
+
+.logrow {
+  text-align: center;
+}
+
+.logcontainer {
+  height: 600px;
+}
+
+.logentry {
+  margin: 10px;
+}
+
+.stocksButton {
+  color: #ffffff;
+  background-color: #222232;
+  border-radius: 10px;
+}
+
+.stocksButton:hover {
+  cursor: pointer;
+  background-color: #35355c;
+}
+
+.nodataentry {
+  color: #5f5f79;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+}

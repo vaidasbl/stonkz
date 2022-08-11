@@ -55,10 +55,27 @@ router.post("/company/history", (req, res) => {
 
 router.get("/log", async (req, res) => {
   try {
-    const logs = Log.find();
-    res.send(logs);
+    const logs = await Log.find();
+    res.send(logs.reverse());
   } catch (err) {
     res.status(400).send(err);
+  }
+});
+
+router.get("/log/p=:page/s=:size", async (req, res) => {
+  try {
+    const log = await Log.find();
+    const logSize = log.length;
+    const pageNum = req.params.page;
+    const pageSize = req.params.size;
+
+    page = log
+      .reverse()
+      .slice(pageNum * pageSize - pageSize, pageNum * pageSize);
+
+    res.send({ page: page, size: logSize });
+  } catch (err) {
+    res.send(err);
   }
 });
 
