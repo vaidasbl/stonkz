@@ -11,6 +11,6 @@ To do:
 - [ ] Implement SCSS
 - [ ] Backend validation
 - [ ] Deploy
-- [ ] Documentation
+- [ ] Documentation https://github.com/madhur-taneja/README-Template
 - [ ] Tests
 
