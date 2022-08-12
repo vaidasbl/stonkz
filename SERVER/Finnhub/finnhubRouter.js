@@ -3,6 +3,8 @@ const cors = require("cors");
 const finnhub = require("finnhub");
 const { response } = require("express");
 const { Log } = require("../Log/log");
+const axios = require("axios");
+const fs = require("fs");
 
 const router = express.Router();
 
@@ -86,6 +88,23 @@ const dateNow = () => {
     hour: "2-digit",
     minute: "2-digit",
   });
+};
+
+const text = async () => {
+  try {
+    const result = await axios.get(
+      "https://finnhub.io/api/v1/stock/symbol?exchange=US&token=cbokdjiad3i94d2lbp80"
+    );
+    console.log("writing start");
+    var stream = fs.createWriteStream("append.txt", { flags: "a" });
+    result.data.forEach((i) =>
+      stream.write('{symbol: "' + i.symbol + '"},' + "\n")
+    );
+    stream.end();
+    console.log("writing end");
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 module.exports = router;

@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CompanyCard from "./CompanyCard";
 import Dashboard from "../02 Common Components/Dashboard";
-import DateInput from "../02 Common Components/DateInput";
 import TextInputField from "../02 Common Components/TextInputField";
 import axios from "axios";
 import { setCompanyData } from "../04 Reducers/companyData";
-import { setGraphData } from "../04 Reducers/graphData";
 
 const MainContainer = () => {
   const dispatch = useDispatch();
@@ -34,17 +32,20 @@ const MainContainer = () => {
     }
   };
 
+  useEffect(() => {}, []);
   return (
     <Dashboard title="Home">
       <div className="row ">
-        <div className="col-6 align-left">
+        <div className="col-6 align-right">
           <TextInputField
             label="Company name"
             value={symbol}
             setData={setSymbol}
+            handleSubmit={handleSearchCompany}
           />
         </div>
-        <div className="col-6">
+
+        <div className="col-6 align-left">
           <button
             type="button"
             className="myBtn2"
@@ -54,8 +55,9 @@ const MainContainer = () => {
           </button>
         </div>
       </div>
-
-      <CompanyCard />
+      <div className="card-container">
+        <CompanyCard />
+      </div>
     </Dashboard>
   );
 };

@@ -47,7 +47,7 @@ export default function DialogForDateInput() {
   return (
     <div>
       <div
-        className="companytitle"
+        className="companytitle pt-3 pb-3"
         onMouseOver={() => setHovered(true)}
         onMouseOut={() => setHovered(false)}
         onClick={handleClickOpen}

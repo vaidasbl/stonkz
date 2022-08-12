@@ -51,6 +51,7 @@ const LogContainer = () => {
                 <div className="nodataentry">no data</div>
               )}
             </div>
+
             <div className="col-3">{entry.eventDate}</div>
           </div>
         ))}
