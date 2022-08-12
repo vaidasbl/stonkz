@@ -3,9 +3,9 @@
 To do:
 
 - [x] Navigation
-- [ ] Action log + pagination
+- [x] Action log + pagination
+- [x] Text input validator regex update + maxLength(35)
 - [ ] Company card redesign + company web url with link
-- [ ] Text input validator regex update + maxLength(35)
 - [ ] .gitignore update
 - [ ] Company symbol suggestion on type - https://finnhub.io/docs/api/stock-symbols
 - [ ] Implement SCSS
