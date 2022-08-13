@@ -67,37 +67,37 @@ export default function DialogForStockData({ data, symbol }) {
                 {data.s === "ok" ? (
                   <div className="row">
                     <div className="col-2">
-                      {data.t.map((t) => (
-                        <div>
+                      {data.t.map((t, i) => (
+                        <div key={i}>
                           {new Date(t * 1000).toLocaleDateString("en-US")}
                         </div>
                       ))}
                     </div>
 
                     <div className="col-2">
-                      {data.h.map((i) => (
-                        <div>{i}</div>
+                      {data.h.map((h, i) => (
+                        <div key={i}>{h}</div>
                       ))}
                     </div>
                     <div className="col-2">
-                      {data.l.map((i) => (
-                        <div>{i}</div>
+                      {data.l.map((l, i) => (
+                        <div key={i}> {l}</div>
                       ))}
                     </div>
                     <div className="col-2">
-                      {data.c.map((c) => (
-                        <div>{c}</div>
+                      {data.c.map((c, i) => (
+                        <div key={i}>{c}</div>
                       ))}
                     </div>
 
                     <div className="col-2">
-                      {data.o.map((o) => (
-                        <div>{o}</div>
+                      {data.o.map((o, i) => (
+                        <div key={i}>{o}</div>
                       ))}
                     </div>
                     <div className="col-2">
-                      {data.v.map((v) => (
-                        <div>{v}</div>
+                      {data.v.map((v, i) => (
+                        <div key={i}>{v}</div>
                       ))}
                     </div>
                   </div>

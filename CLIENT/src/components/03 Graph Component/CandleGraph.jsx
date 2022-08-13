@@ -95,6 +95,7 @@ const CandleGraph = ({ data, symbol }) => {
         constructorType={"stockChart"}
         options={options}
       />
+      <hr />
     </div>
   );
 };

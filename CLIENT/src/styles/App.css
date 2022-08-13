@@ -61,7 +61,14 @@
   color: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  transition: background-color 0.5s ease-in-out;
 }
+
+.card-upper:hover {
+  transition: background-color 0.5s ease-in-out;
+  background-color: #343447;
+}
+
 .card-lower {
   height: 275px;
   background-color: #ffffff;
@@ -227,11 +234,17 @@ button:disabled {
 }
 
 .logcontainer {
-  height: 600px;
+  height: 580px;
 }
 
 .logentry {
-  margin: 20px;
+  margin: 10px;
+  padding: 3px;
+}
+
+.logentry:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  cursor: default;
 }
 
 .stocksButton {
@@ -252,4 +265,8 @@ button:disabled {
 .pagination-container {
   display: flex;
   justify-content: center;
+}
+
+.companytitle {
+  height: 200px;
 }

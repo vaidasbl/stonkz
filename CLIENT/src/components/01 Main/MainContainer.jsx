@@ -5,6 +5,7 @@ import Dashboard from "../02 Common Components/Dashboard";
 import TextInputField from "../02 Common Components/TextInputField";
 import axios from "axios";
 import { setCompanyData } from "../04 Reducers/companyData";
+import Swal from "sweetalert2";
 
 const MainContainer = () => {
   const dispatch = useDispatch();
@@ -13,8 +14,9 @@ const MainContainer = () => {
 
   const handleSearchCompany = async () => {
     try {
-      const result = await axios.get(
-        `http://localhost:3002/api/finnhub/company/${symbol}`
+      const result = await axios.post(
+        `http://localhost:3002/api/finnhub/company`,
+        { symbol: symbol }
       );
       dispatch(
         setCompanyData({
@@ -28,7 +30,13 @@ const MainContainer = () => {
       );
     } catch (err) {
       dispatch(setCompanyData({}));
-      alert(err.message);
+      console.log(err);
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: err.response.data || "Server error",
+        showConfirmButton: false,
+      });
     }
   };
 

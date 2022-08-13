@@ -3,19 +3,22 @@ import React, { useEffect, useState } from "react";
 import Dashboard from "../02 Common Components/Dashboard";
 import DialogForStockData from "../02 Common Components/DialogForStockData";
 import Pagination from "../02 Common Components/Pagination";
+import TextInputForFiltering from "../02 Common Components/TextInputForFiltering";
 
 const LogContainer = () => {
   const [logSize, setLogSize] = useState(0);
   const [page, setPage] = useState(1);
   const [log, setLog] = useState([]);
   const pageSize = 10;
+  const [filterString, setFilterString] = useState("");
 
   const numOfPages = Math.ceil(logSize / pageSize);
 
   const getLogPage = async () => {
     try {
-      const result = await axios.get(
-        `http://localhost:3002/api/finnhub/log/p=${page}/s=${pageSize}`
+      const result = await axios.post(
+        `http://localhost:3002/api/finnhub/log/filter`,
+        { page: page, size: pageSize, filter: filterString }
       );
       setLog(result.data.page);
       setLogSize(result.data.size);
@@ -26,10 +29,17 @@ const LogContainer = () => {
 
   useEffect(() => {
     getLogPage();
-  }, [page]);
+  }, [page, filterString]);
   return (
-    <Dashboard>
+    <Dashboard title={"Log"}>
       <div className="logcontainer container">
+        <div className="align-left mb-4">
+          <TextInputForFiltering
+            label="Filter company or date"
+            setFilterString={setFilterString}
+            filterString={filterString}
+          />
+        </div>
         <div className="row">
           <div className="col-2">Company</div>
           <div className="col-5">Date range</div>

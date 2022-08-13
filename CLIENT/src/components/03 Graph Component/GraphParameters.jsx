@@ -34,7 +34,7 @@ const GraphParameters = ({ getData }) => {
       })
     );
   };
-  console.log(graphData);
+
   useEffect(() => {
     if (
       !empty &&
@@ -47,7 +47,6 @@ const GraphParameters = ({ getData }) => {
 
   return (
     <div className="parameters container">
-      <hr className="hrhr1" />
       <div>Graph parameters</div>
       <div className="row mt-4">
         <div className="col-3">

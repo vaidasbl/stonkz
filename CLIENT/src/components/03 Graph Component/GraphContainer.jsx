@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Dashboard from "../02 Common Components/Dashboard";
+import isEmpty from "../05 Functions/IsEmpty";
 import Swal from "sweetalert2";
 
 import CandleGraph from "./CandleGraph";
@@ -10,8 +11,7 @@ import GraphParameters from "./GraphParameters";
 
 const GraphContainer = () => {
   const graphData = useSelector((state) => state.graphData.value);
-  const [stockData, setStockData] = useState([]);
-
+  const [stockData, setStockData] = useState({});
   const graphParams = {
     symbol: graphData.symbol,
     resolution: graphData.resolution,
@@ -22,24 +22,17 @@ const GraphContainer = () => {
   const getData = async () => {
     try {
       const result = await axios.post(
-        `http://localhost:3002/api/finnhub/company/history`,
+        `http://localhost:3002/api/finnhub/company/stocks`,
         graphParams
       );
       setStockData(result.data);
-      if (result.data.s === "no_data") {
-        Swal.fire({
-          position: "center",
-          icon: "warning",
-          title: `No data found for company '${graphParams.symbol}'`,
-          showConfirmButton: false,
-        });
-      }
     } catch (err) {
+      setStockData({});
       console.log(err);
       Swal.fire({
         position: "center",
         icon: "error",
-        title: err.response.data || err,
+        title: err.response.data || "Server error",
         showConfirmButton: false,
       });
     }
@@ -48,12 +41,17 @@ const GraphContainer = () => {
   return (
     <Dashboard
       title={
-        graphData.symbol
+        graphData.symbol && !isEmpty(stockData)
           ? `Stock data of '${graphData.symbol}'`
-          : "Enter the graph parameters"
+          : ""
       }
     >
-      <CandleGraph data={stockData} symbol={graphData.symbol} />
+      {isEmpty(stockData) ? (
+        <></>
+      ) : (
+        <CandleGraph data={stockData} symbol={graphData.symbol} />
+      )}
+
       <GraphParameters getData={getData} />
     </Dashboard>
   );

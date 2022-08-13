@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const finnhub = require("finnhub");
-const { response } = require("express");
 const { Log } = require("../Log/log");
 const axios = require("axios");
 const fs = require("fs");
@@ -10,16 +9,27 @@ const router = express.Router();
 
 router.use(express.json());
 router.use(cors({ origin: "*" }));
+console.log("123");
 
 const api_key = finnhub.ApiClient.instance.authentications["api_key"];
 api_key.apiKey = "cbokdjiad3i94d2lbp80";
 const finnhubClient = new finnhub.DefaultApi();
 
-router.get("/company/:symbol", (req, res) => {
+router.post("/company", (req, res) => {
   try {
+    const symbol = req.body.symbol;
+    if (symbol === null || symbol === "" || symbol === undefined) {
+      res.status(400).send("Enter the company symbol!");
+      return;
+    }
+
     finnhubClient.companyProfile2(
-      { symbol: req.params.symbol },
+      { symbol: symbol },
       (error, data, response) => {
+        if (isEmpty(data)) {
+          res.status(400).send(`Data for company '${symbol}' was not found.`);
+          return;
+        }
         res.send(data);
       }
     );
@@ -28,25 +38,24 @@ router.get("/company/:symbol", (req, res) => {
   }
 });
 
-router.post("/company/history", (req, res) => {
+router.post("/company/stocks", (req, res) => {
   try {
+    if (req.body.dateFrom > req.body.dateTill) {
+      res.status(400).send("Date from must be earlier than date till!");
+      return;
+    }
+
     finnhubClient.stockCandles(
       req.body.symbol,
       req.body.resolution,
       req.body.dateFrom,
       req.body.dateTill,
       (error, data, response) => {
-        const logEntry = new Log({
-          company: req.body.symbol,
-          stockData: data,
-          dateRange: `${new Date(req.body.dateFrom * 1000).toLocaleDateString(
-            "en-US"
-          )} - ${new Date(req.body.dateTill * 1000).toLocaleDateString(
-            "en-US"
-          )}`,
-          eventDate: dateNow(),
-        });
-        logEntry.save();
+        addToLog(req.body, data);
+        if (data.s === "no_data") {
+          res.status(400).send("No stock data found.");
+          return;
+        }
         res.send(data);
       }
     );
@@ -64,12 +73,17 @@ router.get("/log", async (req, res) => {
   }
 });
 
-router.get("/log/p=:page/s=:size", async (req, res) => {
+router.post("/log/filter", async (req, res) => {
   try {
-    const log = await Log.find();
+    const log = await Log.find({
+      $or: [
+        { eventDate: new RegExp(`.*${req.body.filter}.*`, "i") },
+        { company: new RegExp(`.*${req.body.filter}.*`, "i") },
+      ],
+    });
     const logSize = log.length;
-    const pageNum = req.params.page;
-    const pageSize = req.params.size;
+    const pageNum = req.body.page;
+    const pageSize = req.body.size;
 
     page = log
       .reverse()
@@ -90,7 +104,23 @@ const dateNow = () => {
   });
 };
 
-const text = async () => {
+const isEmpty = (obj) => {
+  return Object.keys(obj).length === 0;
+};
+
+const addToLog = (body, data) => {
+  const logEntry = new Log({
+    company: body.symbol,
+    stockData: data,
+    dateRange: `${new Date(body.dateFrom * 1000).toLocaleDateString(
+      "en-US"
+    )} - ${new Date(body.dateTill * 1000).toLocaleDateString("en-US")}`,
+    eventDate: dateNow(),
+  });
+  logEntry.save();
+};
+
+const symbolsGenerator = async () => {
   try {
     const result = await axios.get(
       "https://finnhub.io/api/v1/stock/symbol?exchange=US&token=cbokdjiad3i94d2lbp80"

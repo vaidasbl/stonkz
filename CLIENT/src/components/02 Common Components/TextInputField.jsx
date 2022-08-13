@@ -22,7 +22,6 @@ export default function TextInputField({
         value={value}
         onChange={handleChange}
         onKeyDown={(e) => {
-          console.log(e.key);
           if (e.key === "Enter") {
             e.preventDefault();
             handleSubmit();
