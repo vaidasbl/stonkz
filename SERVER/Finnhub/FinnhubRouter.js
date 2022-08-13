@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const finnhub = require("finnhub");
-const { Log } = require("../Log/log");
+const { Log } = require("../Log/Log");
 const axios = require("axios");
 const fs = require("fs");
 
@@ -9,7 +9,6 @@ const router = express.Router();
 
 router.use(express.json());
 router.use(cors({ origin: "*" }));
-console.log("123");
 
 const api_key = finnhub.ApiClient.instance.authentications["api_key"];
 api_key.apiKey = "cbokdjiad3i94d2lbp80";

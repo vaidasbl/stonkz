@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { validate } from "../05 Functions/ValidatorLettersAndSpace";
+import { validate } from "../06 Functions/ValidatorLettersAndSpace";
 
-export default function TextInputField({
-  label,
-  value,
-  setData,
-  handleSubmit,
-}) {
+const TextInputField = ({ label, value, setData, handleSubmit }) => {
   const [valid, setValid] = useState(true);
   const handleChange = (e) => {
     validate(e, setData, setValid);
@@ -17,7 +12,7 @@ export default function TextInputField({
     <Box component="">
       <TextField
         error={!valid}
-        label={valid ? label : "Only letters!"}
+        label={valid ? label : "Only letters! "}
         variant="outlined"
         value={value}
         onChange={handleChange}
@@ -27,8 +22,13 @@ export default function TextInputField({
             handleSubmit();
           }
         }}
-        inputProps={{ maxLength: 35, style: { textTransform: "uppercase" } }}
+        inputProps={{
+          maxLength: 35,
+          style: { textTransform: "uppercase" },
+        }}
       />
     </Box>
   );
-}
+};
+
+export default TextInputField;

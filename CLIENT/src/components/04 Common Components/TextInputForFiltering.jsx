@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { validate } from "../05 Functions/ValidatorLettersAndSpace";
-import axios from "axios";
 
-export default function TextInputForFiltering({
-  label,
-  setFilterString,
-  filterString,
-}) {
+const TextInputForFiltering = ({ label, setFilterString, filterString }) => {
   const [valid, setValid] = useState(true);
 
   const handleSearch = async (e) => {
@@ -40,4 +34,6 @@ export default function TextInputForFiltering({
       />
     </Box>
   );
-}
+};
+
+export default TextInputForFiltering;

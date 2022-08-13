@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Dashboard from "../02 Common Components/Dashboard";
-import DialogForStockData from "../02 Common Components/DialogForStockData";
-import Pagination from "../02 Common Components/Pagination";
-import TextInputForFiltering from "../02 Common Components/TextInputForFiltering";
+import Dashboard from "../04 Common Components/Dashboard";
+import DialogForStockData from "../04 Common Components/DialogForStockData";
+import Pagination from "../04 Common Components/Pagination";
+import TextInputForFiltering from "../04 Common Components/TextInputForFiltering";
 
 const LogContainer = () => {
   const [logSize, setLogSize] = useState(0);
@@ -40,7 +40,7 @@ const LogContainer = () => {
             filterString={filterString}
           />
         </div>
-        <div className="row">
+        <div className="row logentry">
           <div className="col-2">Company</div>
           <div className="col-5">Date range</div>
           <div className="col-2">Stock data</div>
@@ -49,7 +49,7 @@ const LogContainer = () => {
         <hr />
         {log.map((entry) => (
           <div className="row logentry" key={entry._id}>
-            <div className="col-2 ">{entry.company}</div>
+            <div className="col-2">{entry.company}</div>
             <div className="col-5">{entry.dateRange}</div>
             <div className="col-2">
               {entry.stockData.s === "ok" ? (

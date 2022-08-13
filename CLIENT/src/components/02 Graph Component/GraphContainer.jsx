@@ -1,9 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import Dashboard from "../02 Common Components/Dashboard";
-import isEmpty from "../05 Functions/IsEmpty";
+import Dashboard from "../04 Common Components/Dashboard";
+import isEmpty from "../06 Functions/IsEmpty";
 import Swal from "sweetalert2";
 
 import CandleGraph from "./CandleGraph";
@@ -42,7 +41,7 @@ const GraphContainer = () => {
     <Dashboard
       title={
         graphData.symbol && !isEmpty(stockData)
-          ? `Stock data of '${graphData.symbol}'`
+          ? `Stock data of '${graphData.symbol.toUpperCase()}'`
           : ""
       }
     >

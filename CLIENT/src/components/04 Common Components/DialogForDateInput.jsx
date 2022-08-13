@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch, useSelector } from "react-redux";
 import DateInput from "./DateInput";
-import { setGraphData } from "../04 Reducers/graphData";
+import { setGraphData } from "../05 Reducers/graphData";
 import { useNavigate } from "react-router-dom";
 
-export default function DialogForDateInput() {
+const DialogForDateInput = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const companyData = useSelector((state) => state.companyData.value);
@@ -73,12 +72,21 @@ export default function DialogForDateInput() {
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button disabled={empty} onClick={handleSave}>
+          <Button variant="outlined" color="inherit" onClick={handleClose}>
+            Close
+          </Button>
+          <Button
+            variant="outlined"
+            color="inherit"
+            disabled={empty}
+            onClick={handleSave}
+          >
             Proceed
           </Button>
         </DialogActions>
       </Dialog>
     </div>
   );
-}
+};
+
+export default DialogForDateInput;

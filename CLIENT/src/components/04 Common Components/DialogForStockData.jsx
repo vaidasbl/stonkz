@@ -1,12 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import CandleGraph from "../03 Graph Component/CandleGraph";
+import CandleGraph from "../02 Graph Component/CandleGraph";
 
-export default function DialogForStockData({ data, symbol }) {
+const DialogForStockData = ({ data, symbol }) => {
   const [graph, setGraph] = useState(false);
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState("paper");
@@ -21,7 +21,7 @@ export default function DialogForStockData({ data, symbol }) {
   };
 
   const descriptionElementRef = useRef(null);
-  React.useEffect(() => {
+  useEffect(() => {
     if (open) {
       const { current: descriptionElement } = descriptionElementRef;
       if (descriptionElement !== null) {
@@ -118,4 +118,6 @@ export default function DialogForStockData({ data, symbol }) {
       </Dialog>
     </div>
   );
-}
+};
+
+export default DialogForStockData;

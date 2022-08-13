@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
-import { useSelector } from "react-redux";
-import axios from "axios";
 
 const CandleGraph = ({ data, symbol }) => {
   let ohlc = [],

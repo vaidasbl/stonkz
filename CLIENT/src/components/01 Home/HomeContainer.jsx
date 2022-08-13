@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CompanyCard from "./CompanyCard";
-import Dashboard from "../02 Common Components/Dashboard";
-import TextInputField from "../02 Common Components/TextInputField";
+import Dashboard from "../04 Common Components/Dashboard";
+import TextInputField from "../04 Common Components/TextInputField";
 import axios from "axios";
-import { setCompanyData } from "../04 Reducers/companyData";
+import { setCompanyData } from "../05 Reducers/companyData";
 import Swal from "sweetalert2";
 
-const MainContainer = () => {
+const HomeContainer = () => {
   const dispatch = useDispatch();
   const graphData = useSelector((state) => state.graphData.value);
   const [symbol, setSymbol] = useState(graphData.symbol);
@@ -43,26 +43,19 @@ const MainContainer = () => {
   useEffect(() => {}, []);
   return (
     <Dashboard title="Home">
-      <div className="row ">
-        <div className="col-6 align-right">
-          <TextInputField
-            label="Company name"
-            value={symbol}
-            setData={setSymbol}
-            handleSubmit={handleSearchCompany}
-          />
-        </div>
+      <div className="d-flex flex-row align-center">
+        <TextInputField
+          label="Company symbol"
+          value={symbol}
+          setData={setSymbol}
+          handleSubmit={handleSearchCompany}
+        />
 
-        <div className="col-6 align-left">
-          <button
-            type="button"
-            className="myBtn2"
-            onClick={handleSearchCompany}
-          >
-            Search
-          </button>
-        </div>
+        <button type="button" className="myBtn2" onClick={handleSearchCompany}>
+          Search
+        </button>
       </div>
+
       <div className="card-container">
         <CompanyCard />
       </div>
@@ -70,4 +63,4 @@ const MainContainer = () => {
   );
 };
 
-export default MainContainer;
+export default HomeContainer;

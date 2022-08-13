@@ -2,9 +2,9 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
-import symbols from "../05 Functions/symbols";
+import symbols from "../06 Functions/symbols";
 
-export default function TextInputWithAutocomplete() {
+const TextInputWithAutocomplete = () => {
   return (
     <Stack spacing={2} sx={{ width: 300 }}>
       <Autocomplete
@@ -15,6 +15,6 @@ export default function TextInputWithAutocomplete() {
       />
     </Stack>
   );
-}
+};
 
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
+export default TextInputWithAutocomplete;
