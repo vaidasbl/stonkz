@@ -5,6 +5,7 @@ import DialogForStockData from "../04 Common Components/DialogForStockData";
 import Pagination from "../04 Common Components/Pagination";
 import TextInputForFiltering from "../04 Common Components/TextInputForFiltering";
 import Swal from "sweetalert2";
+import apiEndpoint from "../../endpoint";
 
 const LogContainer = () => {
   const [logSize, setLogSize] = useState(0);
@@ -17,10 +18,11 @@ const LogContainer = () => {
 
   const getLogPage = async () => {
     try {
-      const result = await axios.post(
-        `http://localhost:3002/api/finnhub/log/filter`,
-        { page: page, size: pageSize, filter: filterString }
-      );
+      const result = await axios.post(`${apiEndpoint}/api/finnhub/log/filter`, {
+        page: page,
+        size: pageSize,
+        filter: filterString,
+      });
       setLog(result.data.page);
       setLogSize(result.data.size);
     } catch (err) {

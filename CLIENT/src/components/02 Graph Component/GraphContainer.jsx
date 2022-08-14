@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 
 import CandleGraph from "./CandleGraph";
 import GraphParameters from "./GraphParameters";
+import apiEndpoint from "../../endpoint";
 
 const GraphContainer = () => {
   const graphData = useSelector((state) => state.graphData.value);
@@ -21,7 +22,7 @@ const GraphContainer = () => {
   const getData = async () => {
     try {
       const result = await axios.post(
-        `http://localhost:3002/api/finnhub/company/stocks`,
+        `${apiEndpoint}/api/finnhub/company/stocks`,
         graphParams
       );
       setStockData(result.data);
