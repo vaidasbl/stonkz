@@ -44,53 +44,49 @@ const LogContainer = () => {
 
   return (
     <Dashboard title={"Log"}>
-      {log.length !== 0 ? (
-        <div>
-          <div className="logcontainer container">
-            <div className="align-left mb-4">
-              <TextInputForFiltering
-                label="Filter company or date"
-                setFilterString={setFilterString}
-                filterString={filterString}
-              />
-            </div>
-            <div className="row logcolumns">
-              <div className="col-2">Company</div>
-              <div className="col-5">Date range</div>
-              <div className="col-2">Stock data</div>
-              <div className="col-3">Search date</div>
-            </div>
-            <hr />
-            {log.map((entry) => (
-              <div className="row logentry" key={entry._id}>
-                <div className="col-2">{entry.company}</div>
-                <div className="col-5">{entry.dateRange}</div>
-                <div className="col-2">
-                  {entry.stockData.s === "ok" ? (
-                    <DialogForStockData
-                      data={entry.stockData}
-                      symbol={entry.company}
-                    />
-                  ) : (
-                    <div className="nodataentry">no data</div>
-                  )}
-                </div>
-
-                <div className="col-3">{entry.eventDate}</div>
-              </div>
-            ))}
+      <div>
+        <div className="logcontainer container">
+          <div className="align-left mb-4">
+            <TextInputForFiltering
+              label="Filter company or date"
+              setFilterString={setFilterString}
+              filterString={filterString}
+            />
           </div>
+          <div className="row logcolumns">
+            <div className="col-2">Company</div>
+            <div className="col-5">Date range</div>
+            <div className="col-2">Stock data</div>
+            <div className="col-3">Search date</div>
+          </div>
+          <hr />
+          {log.map((entry) => (
+            <div className="row logentry" key={entry._id}>
+              <div className="col-2">{entry.company}</div>
+              <div className="col-5">{entry.dateRange}</div>
+              <div className="col-2">
+                {entry.stockData.s === "ok" ? (
+                  <DialogForStockData
+                    data={entry.stockData}
+                    symbol={entry.company}
+                  />
+                ) : (
+                  <div className="nodataentry">no data</div>
+                )}
+              </div>
 
-          {numOfPages > 1 && (
-            <div className="pagination-container">
-              {" "}
-              <Pagination numOfPages={numOfPages} setPage={setPage} />
+              <div className="col-3">{entry.eventDate}</div>
             </div>
-          )}
+          ))}
         </div>
-      ) : (
-        <div>Log is empty</div>
-      )}
+
+        {numOfPages > 1 && (
+          <div className="pagination-container">
+            {" "}
+            <Pagination numOfPages={numOfPages} setPage={setPage} />
+          </div>
+        )}
+      </div>
     </Dashboard>
   );
 };
