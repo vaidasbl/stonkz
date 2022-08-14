@@ -6,6 +6,7 @@ import TextInputField from "../04 Common Components/TextInputField";
 import axios from "axios";
 import { setCompanyData } from "../05 Reducers/companyData";
 import Swal from "sweetalert2";
+import apiEndpoint from "../../endpoint";
 
 const HomeContainer = () => {
   const dispatch = useDispatch();
@@ -14,10 +15,9 @@ const HomeContainer = () => {
 
   const handleSearchCompany = async () => {
     try {
-      const result = await axios.post(
-        `http://localhost:3002/api/finnhub/company`,
-        { symbol: symbol }
-      );
+      const result = await axios.post(`${apiEndpoint}/api/finnhub/company`, {
+        symbol: symbol,
+      });
       dispatch(
         setCompanyData({
           name: result.data.name,

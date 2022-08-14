@@ -109,7 +109,7 @@ const isEmpty = (obj) => {
 
 const addToLog = (body, data) => {
   const logEntry = new Log({
-    company: body.symbol,
+    company: body.symbol.toUpperCase(),
     stockData: data,
     dateRange: `${new Date(body.dateFrom * 1000).toLocaleDateString(
       "en-US"
