@@ -45,7 +45,7 @@ This component consists of table-like data list, text input field and pagination
 
 ## Tools, Technologies and libraries
 
-Backend: Node.js, Express, Mongoose;  
+Backend: Node.js, Express, Mongoose, Finnhub;  
 Frontend: React.js, Redux.js, MUI, Bootstrap, Highcharts, SASS, Sweetalert;  
 Database: MongoDB;  
 Hosted on: www.heroku.com  
