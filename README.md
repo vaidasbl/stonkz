@@ -5,7 +5,7 @@ url: http://vaidasbl-stonkz.herokuapp.com/
 The application was built based on the requirements of IBM internship's technical task. The goal of developing this app was educational/presentational and serves no real-world purpose.
 
 ## Introduction
-The main idea of this app is to display stock prices of various companies by integrating finnhub.com API. The implementation of said API is written in backend service of this app. The total of two finnhub's API functions were integrated: 
+The main idea of this app is to display stock prices of various companies by integrating finnhub.io API. The implementation of said API is written in backend service of this app. The total of two finnhub's API functions were integrated: 
 
  - A function for retrieving company data by company symbol;
  - A function for retrieving stock data of a company by company symbol, resolution and timeframe.
