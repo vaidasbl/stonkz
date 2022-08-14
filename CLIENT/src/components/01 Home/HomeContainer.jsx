@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CompanyCard from "./CompanyCard";
 import Dashboard from "../04 Common Components/Dashboard";
@@ -40,9 +40,8 @@ const HomeContainer = () => {
     }
   };
 
-  useEffect(() => {}, []);
   return (
-    <Dashboard title="Home">
+    <Dashboard title="Company search">
       <div className="d-flex flex-row align-center">
         <TextInputField
           label="Company symbol"
@@ -51,7 +50,7 @@ const HomeContainer = () => {
           handleSubmit={handleSearchCompany}
         />
 
-        <button type="button" className="myBtn2" onClick={handleSearchCompany}>
+        <button className="myBtn2" onClick={handleSearchCompany}>
           Search
         </button>
       </div>
