@@ -14,6 +14,7 @@ const api_key = finnhub.ApiClient.instance.authentications["api_key"];
 api_key.apiKey = "cbokdjiad3i94d2lbp80";
 const finnhubClient = new finnhub.DefaultApi();
 
+//GET COMPANY DATA
 router.post("/company", (req, res) => {
   try {
     const symbol = req.body.symbol;
@@ -37,6 +38,7 @@ router.post("/company", (req, res) => {
   }
 });
 
+//GET STOCK DATA
 router.post("/company/stocks", (req, res) => {
   try {
     if (req.body.dateFrom > req.body.dateTill) {
@@ -63,6 +65,7 @@ router.post("/company/stocks", (req, res) => {
   }
 });
 
+//GET FULL LOG
 router.get("/log", async (req, res) => {
   try {
     const logs = await Log.find();
@@ -72,6 +75,7 @@ router.get("/log", async (req, res) => {
   }
 });
 
+//GET LOG PAGE
 router.post("/log/filter", async (req, res) => {
   try {
     const log = await Log.find({
@@ -119,13 +123,14 @@ const addToLog = (body, data) => {
   logEntry.save();
 };
 
+//GENERATES A TEXT FILE WITH ALL EXISTING SYMBOLS IN FINNHUB (NEARLY 29K SYMBOLS)
 const symbolsGenerator = async () => {
   try {
     const result = await axios.get(
       "https://finnhub.io/api/v1/stock/symbol?exchange=US&token=cbokdjiad3i94d2lbp80"
     );
     console.log("writing start");
-    var stream = fs.createWriteStream("append.txt", { flags: "a" });
+    var stream = fs.createWriteStream("symbols.txt", { flags: "a" });
     result.data.forEach((i) =>
       stream.write('{symbol: "' + i.symbol + '"},' + "\n")
     );

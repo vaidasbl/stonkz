@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 
-const FinnhubRouter = require("./Finnhub/FinnhubRouter");
+const FinnhubRouter = require("./SERVER/Finnhub/FinnhubRouter");
 app.use("/api/finnhub", FinnhubRouter);
 
 app.use(express.json());
