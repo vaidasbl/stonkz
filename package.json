@@ -1,0 +1,23 @@
+{
+  "name": "stonkz-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "build": "cd CLIENT && npm run build",
+    "install-front": "cd CLIENT && npm install",
+    "install-back": "npm install",
+    "heroku-postbuild": "npm run install-back && npm run install-front && npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "finnhub": "^1.2.14",
+    "mongoose": "^6.5.1"
+  }
+}

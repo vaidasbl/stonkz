@@ -1,0 +1,87 @@
+@use "variables";
+
+.redborder {
+  border: 1px solid red;
+}
+
+.dashboard-container {
+  border: 1px solid rgba(5, 0, 53, 0.123);
+  border-radius: 5px;
+  width: 700px;
+  height: 700px;
+
+  background-color: white;
+  justify-content: center;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.322) 0px 15px 25px,
+    rgba(0, 0, 0, 0.267) 0px 5px 10px;
+}
+
+.dashboard-title {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.dashboard-body {
+  height: 420px;
+  margin: 20px 20px;
+}
+
+.background {
+  display: flex;
+  background-color: variables.$primary-color;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  border: 1px solid variables.$primary-color-darker;
+  color: variables.$red;
+  background-color: rgba(233, 233, 233, 0.842);
+}
+
+.warningmsg {
+  font-size: 12px;
+  color: variables.$red;
+}
+
+.align-right {
+  display: flex;
+  justify-content: right;
+}
+
+.align-left {
+  display: flex;
+  justify-content: left;
+}
+
+.align-center {
+  display: flex;
+  justify-content: center;
+}
+
+%ImyBtn {
+  background-color: white;
+  border: 1px solid variables.$button-border-color;
+  border-radius: 5px;
+  color: variables.$primary-color;
+}
+
+%ImyBtn:hover {
+  border: 1px solid black;
+}
+
+.myBtn1 {
+  @extend %ImyBtn;
+  width: 100px;
+  height: 40px;
+}
+
+.myBtn2 {
+  @extend %ImyBtn;
+  width: 100px;
+  height: 56px;
+}

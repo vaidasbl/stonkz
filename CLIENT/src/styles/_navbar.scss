@@ -1,0 +1,32 @@
+@use "variables";
+
+.navibar {
+  margin-bottom: 10px;
+  height: 30px;
+  width: 40%;
+}
+
+%InavItem {
+  text-align: center;
+  margin: 10px;
+  border-radius: variables.$border-round-radius-m;
+  user-select: none;
+  cursor: pointer;
+}
+
+.navitem {
+  @extend %InavItem;
+  color: white;
+  border: 1px solid white;
+}
+
+.navitem:hover {
+  background-color: variables.$primary-color-lighter;
+}
+
+.navitem-active {
+  @extend %InavItem;
+  color: variables.$primary-color;
+  background-color: white;
+  border: 1px solid variables.$primary-color-lighter;
+}
