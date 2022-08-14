@@ -1,17 +1,20 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Dashboard from "../04 Common Components/Dashboard";
 import isEmpty from "../06 Functions/IsEmpty";
 import Swal from "sweetalert2";
-
+import { setStockData } from "../05 Reducers/stockData";
 import CandleGraph from "./CandleGraph";
 import GraphParameters from "./GraphParameters";
 import apiEndpoint from "../../endpoint";
 
 const GraphContainer = () => {
+  const isInitialMount = useRef(true);
+  const dispatch = useDispatch();
   const graphData = useSelector((state) => state.graphData.value);
-  const [stockData, setStockData] = useState({});
+  const stockData = useSelector((state) => state.stockData.value);
+
   const graphParams = {
     symbol: graphData.symbol,
     resolution: graphData.resolution,
@@ -25,9 +28,9 @@ const GraphContainer = () => {
         `${apiEndpoint}/api/finnhub/company/stocks`,
         graphParams
       );
-      setStockData(result.data);
+      dispatch(setStockData({ stocks: result.data }));
     } catch (err) {
-      setStockData({});
+      dispatch(setStockData({ stocks: {} }));
       console.log(err);
       Swal.fire({
         position: "center",
@@ -37,19 +40,25 @@ const GraphContainer = () => {
       });
     }
   };
-
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      getData();
+    }
+  }, [graphData]);
   return (
     <Dashboard
       title={
-        graphData.symbol && !isEmpty(stockData)
+        graphData.symbol && !isEmpty(stockData.stocks)
           ? `Stock data of '${graphData.symbol.toUpperCase()}'`
           : ""
       }
     >
-      {isEmpty(stockData) ? (
+      {isEmpty(stockData.stocks) ? (
         <></>
       ) : (
-        <CandleGraph data={stockData} symbol={graphData.symbol} />
+        <CandleGraph data={stockData.stocks} symbol={graphData.symbol} />
       )}
 
       <GraphParameters getData={getData} />

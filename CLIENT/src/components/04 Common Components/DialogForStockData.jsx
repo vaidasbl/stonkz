@@ -109,9 +109,15 @@ const DialogForStockData = ({ data, symbol }) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button variant="outlined" color="inherit" onClick={handleClose}>
+            Close
+          </Button>
 
-          <Button onClick={() => setGraph(!graph)}>
+          <Button
+            variant="outlined"
+            color="inherit"
+            onClick={() => setGraph(!graph)}
+          >
             {graph ? "See data" : "See in graph"}
           </Button>
         </DialogActions>

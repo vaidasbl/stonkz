@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import DateInput from "../04 Common Components/DateInput";
@@ -6,11 +6,10 @@ import ResolutionSelect from "../04 Common Components/ResolutionSelect";
 import TextInputField from "../04 Common Components/TextInputField";
 import { setGraphData } from "../05 Reducers/graphData";
 
-const GraphParameters = ({ getData }) => {
+const GraphParameters = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const graphData = useSelector((state) => state.graphData.value);
-
   const [symbol, setSymbol] = useState(graphData.symbol);
   const [resolution, setResolution] = useState(graphData.resolution);
   const [dateFrom, setDateFrom] = useState(graphData.dateFrom);
@@ -34,16 +33,6 @@ const GraphParameters = ({ getData }) => {
       })
     );
   };
-
-  useEffect(() => {
-    if (
-      !empty &&
-      graphData.dateFrom !== "Invalid Date" &&
-      graphData.dateTill !== "Invalid Date"
-    ) {
-      getData();
-    }
-  }, [graphData]);
 
   return (
     <div className="">

@@ -87,7 +87,7 @@ const CandleGraph = ({ data, symbol }) => {
     ],
   };
   return (
-    <div className="">
+    <div>
       <HighchartsReact
         highcharts={Highcharts}
         constructorType={"stockChart"}
