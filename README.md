@@ -18,15 +18,15 @@ There are three main components, each providing different functionalities.
 
 ### - Home component
 
-This component is displayed at the homepage of the application. By default, it consists of a text input field and a button. The input field accepts letters and spaces, up to 35 characters, and should be used to enter the symbol of a company (e.g., MSFT, IBM or AAPL). If the entered symbol is apparent in finnhub's database, clicking a button next to the input field displays a card with a company data - name, currency, country and a web url. 
+This component is displayed at the homepage of the application. By default, it consists of a text input field and a button. The input field accepts letters and spaces, up to 35 characters, and should be used to enter the symbol of a company (e.g., MSFT, IBM, AAPL, etc.). If the entered symbol is apparent in finnhub's database, clicking the button next to the input field displays a card with company data - name, currency, country and web url. 
 
-It is possible to look for stock exchange data of the found company by clicking its name in the company card. By doing this, a dialog is presented with two data pickers which define the timeframe of stock data. Clicking 'proceed' at the bottom of the dialog navigates to the graph view.
+It is possible to look for stock exchange data of the found company by clicking its name in the company card. By doing this, a dialog is presented with two data pickers which define the timeframe of stock data. Clicking 'Proceed' button at the bottom of the dialog navigates to the graph view.
 
 ### - Graph (stocks) component
 
-This component can be found by clicking 'Stocks' in the navigation bar or by proceeding through company card dialog at homepage.
+This component can be found by clicking 'Stocks' in the navigation bar or by proceeding through company card's name dialog at homepage.
 
-There are four input fields and two buttons. Filling all the fields unlocks 'Search' button, which invokes function for stock data retrieving and generates a candle graph according to the data provided.
+There are four input fields and two buttons. Filling in all the fields unlocks 'Search' button, which invokes function for stock data retrieving and generates a candle graph according to the data provided.
 
 ### - Log component
 
@@ -38,14 +38,14 @@ This component consists of table-like data list, text input field and pagination
 
 ## Limitations and shortcomings
 
-- It would be useful for a company symbol input field to show suggestions of what symbols exist. This was attempted to accomplish by writing a function for symbol extraction, but it generated a text file with nearly 29k company symbols, which kept breaking the app;
-- Graph generation through company card in homepage does not work as intented. It does not trigger a function so user has to manually click search. This is caused by poorly organized component structure;
+- It would be useful for a company symbol input field to show suggestions of what symbols exist in finnhub's database. This was attempted to accomplish by writing a function for symbol extraction, but it generated a text file with nearly 29k company symbols, which kept breaking the app;
+- Graph generation through company card in homepage does not work as intented. It does not trigger a function so a user has to manually click 'Search' button. This is caused by poorly organized component structure;
 - Refreshing the page while not at home path '/' shows routing error;
 - There are no tests written.
 
-## Tools, Technologies and libraries
+## Tools, Technologies and libraries used
 
 Backend: Node.js, Express, Mongoose, Finnhub;  
 Frontend: React.js, Redux.js, MUI, Bootstrap, Highcharts, SASS, Sweetalert;  
 Database: MongoDB;  
-Hosted on: www.heroku.com  
+Hosted on: Heroku
