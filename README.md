@@ -10,12 +10,9 @@ The main idea of this app is to display stock prices of various companies by int
  - A function for retrieving company data by company symbol;
  - A function for retrieving stock data of a company by company symbol, resolution and timeframe.
 
-By manipulating these functions, three views/components were designed to display the results.
+Three views/components were designed to display the results of these functions.
 
 ## UI components
-
-There are three main components, each providing different functionalities.
-
 ### - Home component
 
 This component is displayed at the homepage of the application. By default, it consists of a text input field and a button. The input field accepts letters and spaces, up to 35 characters, and should be used to enter the symbol of a company (e.g., MSFT, IBM, AAPL, etc.). If the entered symbol is apparent in finnhub's database, clicking the button next to the input field displays a card with company data - name, currency, country and web url. 
