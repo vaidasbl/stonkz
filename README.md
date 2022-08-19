@@ -38,6 +38,7 @@ This component consists of table-like data list, text input field and pagination
 - It would be useful for a company symbol input field to show suggestions of what symbols exist in finnhub's database. This was attempted to accomplish by writing a function for symbol extraction, but it generated a text file with nearly 29k company symbols, which kept breaking the app;
 - Graph generation through company card in homepage does not work as intented. It does not trigger a function so a user has to manually click 'Search' button. This is caused by poorly organized component structure;
 - Refreshing the page while not at home path '/' shows routing error;
+- The application is incompatible with mobile;
 - There are no tests written.
 
 ## Tools, Technologies and libraries used
