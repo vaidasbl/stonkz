@@ -39,6 +39,7 @@ This component consists of table-like data list, text input field and pagination
 - Graph generation through company card in homepage does not work as intented. It does not trigger a function so a user has to manually click 'Search' button. This is caused by poorly organized component structure;
 - Refreshing the page while not at home path '/' shows routing error;
 - The application is incompatible with mobile;
+- Date inputs are glitchy;
 - There are no tests written.
 
 ## Tools, Technologies and libraries used
