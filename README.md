@@ -15,9 +15,9 @@ Three views/components were designed to display the results of these functions.
 ## UI components
 ### - Home component
 
-This component is displayed at the homepage of the application. By default, it consists of a text input field and a button. The input field accepts letters and spaces, up to 35 characters, and should be used to enter the symbol of a company (e.g., MSFT, IBM, AAPL, etc.). If the entered symbol is apparent in finnhub's database, clicking the button next to the input field displays a card with company data - name, currency, country and web url. 
+This component is displayed at the homepage of the application. By default, it consists of a text input field and a button. The input field accepts letters and spaces, up to 35 characters, and should be used to enter the symbol of a company (e.g., MSFT, IBM, AAPL, etc.). If the entered symbol is apparent in finnhub's database, clicking the 'Search' button located next to the input field, displays a card with company data - name, currency, country and web url. 
 
-It is possible to look for stock exchange data of the found company by clicking its name in the company card. By doing this, a dialog is presented with two data pickers which define the timeframe of stock data. Clicking 'Proceed' button at the bottom of the dialog navigates to the graph view.
+It is possible to look for stock exchange data of the company by clicking its name in the company card. By doing this, a dialog is presented with two data pickers which define the timeframe of stock data. Clicking 'Proceed' button at the bottom of the dialog navigates to the graph view.
 
 ### - Graph (stocks) component
 
